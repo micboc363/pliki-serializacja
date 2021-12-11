@@ -7,9 +7,9 @@ import java.io.ObjectInputStream;
 import java.io.IOException;
 
 
-public class Zapis {
+public class Main {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		Osoba o1 = new Osoba("Adam", "Mickiewicz", 1798);
 		Osoba o2 = new Osoba("Juliusz", "Slowacki", 1809);
 		
