@@ -12,23 +12,31 @@ public class Main {
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		Osoba o1 = new Osoba("Adam", "Mickiewicz", 1798);
 		Osoba o2 = new Osoba("Juliusz", "Slowacki", 1809);
-		
-	
+    Osoba o3 = new Osoba("Michał", "Bochenek", 1982);
+
+    
+    ArrayList<Osoba> lista = new ArrayList<Osoba>();
+    //dodanie dwoch obiektow do arraylisty
+    lista.add(o1);
+    lista.add(o2);
+    lista.add(o3);
+    
+	//serializacja - zapisujemy do pliku cale obiekty (nie pliki tesktowe tylko binarne) - roszerzenie nie ma znaczenia
 		FileOutputStream fos = new FileOutputStream("plik.ser");
 		BufferedOutputStream bos = new BufferedOutputStream(fos);
 		ObjectOutputStream oos = new ObjectOutputStream(bos);
-		
-		oos.writeObject(o1);
-		oos.writeObject(o2);
+		//po opakowaniu pliku w BufferedOutputStream i ObjectOutputStream mozna korzystac z tych metod - writeobject
+		oos.writeObject(lista);
+		//oos.writeObject(o2);
 		
 		oos.close();
-		
+		//czytanie z pliku obiektow
 		FileInputStream fis = new FileInputStream("plik.ser");
 		BufferedInputStream bis = new BufferedInputStream(fis);
 		ObjectInputStream ois = new ObjectInputStream(bis);
-				
-		while(bis.available() > 0) {
-			Osoba o = (Osoba) ois.readObject();
+			//czytanie w petli do konca pliku	
+		while(bis.available() > 0) {//sprawdzenie konca pliku
+			ArrayList<Osoba> o = (ArrayList<Osoba>) ois.readObject();//czytanie obiektu - konwersja 
 			System.out.println(o);
 		}
 		
